@@ -6,9 +6,10 @@ import { supabase } from '../supabaseClient';
 interface Product {
   id: number;
   name: string;
-  description: string;
+  description: string; // Agrega description
   price: number;
-  image_url: string;
+  image: string; // Cambia image_url por image si es necesario
+  isNew: boolean; // Agrega isNew
 }
 
 const ProductsPage: React.FC = () => {

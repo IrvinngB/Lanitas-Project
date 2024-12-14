@@ -5,11 +5,14 @@ import ProductCard from '../components/ProductCard';
 import { supabase } from '../supabaseClient';
 
 interface Product {
-  id: number;
-  name: string;
-  price: number;
-  image_url: string;
-}
+    id: number;
+    name: string;
+    description: string; // Agrega description
+    price: number;
+    image: string; // Cambia image_url por image si es necesario
+    isNew: boolean; // Agrega isNew
+  }
+  
 
 const Home: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);

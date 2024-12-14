@@ -2,16 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { getAllProducts, deleteProduct } from '../api/api';
 import ProductCard from './ProductCard';
-import { Product } from '../supabaseClient';
+import { Product } from '../supabaseClient'; // Asegúrate de que el tipo Product sea correcto
 
 const ProductList: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Función para obtener los productos
   const fetchProducts = async () => {
     try {
+      setIsLoading(true);
       const fetchedProducts = await getAllProducts();
+      if (!fetchedProducts) throw new Error('No se encontraron productos');
       setProducts(fetchedProducts);
     } catch (err) {
       setError('Error al cargar los productos');
@@ -20,10 +23,12 @@ const ProductList: React.FC = () => {
     }
   };
 
+  // Efecto para cargar los productos al montar el componente
   useEffect(() => {
     fetchProducts();
   }, []);
 
+  // Función para manejar la eliminación de un producto
   const handleDelete = async (id: number) => {
     if (window.confirm('¿Estás seguro de que quieres eliminar este producto?')) {
       try {
@@ -35,9 +40,11 @@ const ProductList: React.FC = () => {
     }
   };
 
+  // Renderizado condicional mientras se cargan los productos
   if (isLoading) return <div className="text-center">Cargando productos...</div>;
   if (error) return <div className="text-center text-red-500">{error}</div>;
 
+  // Renderizado principal del componente
   return (
     <div className="mt-8">
       <h2 className="text-2xl font-semibold mb-4 text-detail">Lista de Productos</h2>
@@ -51,7 +58,9 @@ const ProductList: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
+              className="p-4 bg-white shadow-md rounded-lg"
             >
+              {/* Componente de tarjeta para mostrar los detalles del producto */}
               <ProductCard product={product} />
               <button
                 onClick={() => handleDelete(product.id)}
