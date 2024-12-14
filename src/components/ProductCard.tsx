@@ -3,8 +3,8 @@ import { Product } from '../supabaseClient';
 
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
-  const whatsappMessage = `Hola, vi tus productos en tu página web, y me gustó el producto "${product.name}". Me gustaría saber su precio ($${product.price}) y también organizar el envío.`;
-  const whatsappLink = `https://wa.me/50763615832?text=${encodeURIComponent(whatsappMessage)}`;
+  const whatsappMessage = `Hola, vi tus productos en tu página web, y me gustó el producto "${product.name}". Me gustaría saber mas sobre el producto.`;
+  const whatsappLink = `https://wa.me/50765742258?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
     <div
