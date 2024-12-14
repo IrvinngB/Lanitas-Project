@@ -1,4 +1,6 @@
 import React from 'react';
+import { Product } from '../supabaseClient';
+
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   const whatsappMessage = `Hola, vi tus productos en tu página web, y me gustó el producto "${product.name}". Me gustaría saber su precio ($${product.price}) y también organizar el envío.`;

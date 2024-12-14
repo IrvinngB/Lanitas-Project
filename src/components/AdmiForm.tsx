@@ -12,7 +12,7 @@ const AdminForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const { data, error } = await supabase.from('productos').insert([
+    const {  error } = await supabase.from('productos').insert([
       {
         name: productName,
         description: productDescription,
